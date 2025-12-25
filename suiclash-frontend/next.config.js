@@ -1,6 +1,5 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
@@ -13,11 +12,9 @@ const nextConfig: NextConfig = {
   },
   env: {
     NEXT_PUBLIC_PACKAGE_ID: process.env.NEXT_PUBLIC_PACKAGE_ID || '0x0',
-    NEXT_PUBLIC_CLASH_CARD_ID: process.env.NEXT_PUBLIC_CLASH_CARD_ID || '0x0',
-    NEXT_PUBLIC_CLASH_TOKEN_ID: process.env.NEXT_PUBLIC_CLASH_TOKEN_ID || '0x0',
-    NEXT_PUBLIC_CLASH_ARENA_ID: process.env.NEXT_PUBLIC_CLASH_ARENA_ID || '0x0',
-    NEXT_PUBLIC_CLASH_MARKET_ID: process.env.NEXT_PUBLIC_CLASH_MARKET_ID || '0x0',
+    NEXT_PUBLIC_NETWORK_RPC: process.env.NEXT_PUBLIC_NETWORK_RPC || 'https://fullnode.testnet.sui.io:443',
+    NEXT_PUBLIC_NETWORK: process.env.NEXT_PUBLIC_NETWORK || 'testnet',
   },
 }
 
-export default nextConfig
+module.exports = nextConfig
