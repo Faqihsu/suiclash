@@ -1,4 +1,4 @@
-# Sui utility functions
+// Sui utility functions
 export const SUI_DECIMAL = 9
 export const MIST_PER_SUI = 1_000_000_000
 
@@ -11,7 +11,7 @@ export function toMist(sui: number): bigint {
   return BigInt(Math.floor(sui * MIST_PER_SUI))
 }
 
-# Contract constants
+// Contract constants
 export const CONTRACTS = {
   PACKAGE_ID: process.env.NEXT_PUBLIC_PACKAGE_ID || '0x0',
   CLASH_TOKEN: process.env.NEXT_PUBLIC_CLASH_TOKEN_ID || '0x0',
@@ -20,7 +20,7 @@ export const CONTRACTS = {
   CLASH_MARKET: process.env.NEXT_PUBLIC_CLASH_MARKET_ID || '0x0',
 }
 
-# Game constants
+// Game constants
 export const GAME = {
   CARD_MINT_COST: 50_000_000_000, // 50 CLASH (9 decimals)
   BATTLE_ENTRY_FEE: 5_000_000_000, // 5 CLASH
@@ -32,7 +32,7 @@ export const GAME = {
   MAX_LEVEL: 10,
 }
 
-# Elements
+// Elements
 export const ELEMENTS = {
   NEUTRAL: 0,
   FIRE: 1,
@@ -47,7 +47,7 @@ export const ELEMENT_NAMES = {
   [ELEMENTS.EARTH]: 'Earth 🪨',
 }
 
-# Rarity
+// Rarity
 export const RARITY = {
   COMMON: 1,
   RARE: 2,

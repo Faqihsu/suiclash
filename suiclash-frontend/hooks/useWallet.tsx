@@ -1,7 +1,6 @@
 'use client'
 
-import { useContext, createContext, ReactNode } from 'react'
-import { useConnectWallet, useAccount, useSignAndExecuteTransaction } from '@suiet/wallet-kit'
+import { useContext, createContext, ReactNode, useState } from 'react'
 
 interface WalletContextType {
   isConnected: boolean
@@ -13,18 +12,30 @@ interface WalletContextType {
 export const WalletContext = createContext<WalletContextType | undefined>(undefined)
 
 export function WalletProvider({ children }: { children: ReactNode }) {
-  const { connected, address } = useAccount()
-  const { mutate: connectWallet } = useConnectWallet()
+  const [isConnected, setIsConnected] = useState(false)
+  const [address, setAddress] = useState<string | null>(null)
+
+  const connect = async () => {
+    // Placeholder for wallet connection logic
+    // Will be implemented when @suiet/wallet-kit is available
+    setIsConnected(true)
+    setAddress('0x123...abc')
+  }
+
+  const disconnect = () => {
+    setIsConnected(false)
+    setAddress(null)
+  }
+
+  const value: WalletContextType = {
+    isConnected,
+    address,
+    connect,
+    disconnect,
+  }
 
   return (
-    <WalletContext.Provider
-      value={{
-        isConnected: connected,
-        address: address || null,
-        connect: () => connectWallet(),
-        disconnect: () => {},
-      }}
-    >
+    <WalletContext.Provider value={value}>
       {children}
     </WalletContext.Provider>
   )
@@ -38,15 +49,20 @@ export function useWallet() {
   return context
 }
 
-# Hook untuk battle transactions
+// Hook untuk blockchain interactions
 export function useClashContracts() {
-  const { signAndExecuteTransaction } = useSignAndExecuteTransaction()
-  const { address } = useAccount()
-
   return {
     mintCard: async (name: string, atk: number, def: number, element: number, rarity: number) => {
-      // Implementation untuk mint card
+      // Implementation akan diisi ketika @suiet/wallet-kit tersedia
       console.log('Mint card:', { name, atk, def, element, rarity })
+    },
+    battle: async (cardId: string, opponentCardId: string) => {
+      // Implementation
+      console.log('Battle:', { cardId, opponentCardId })
+    },
+    tradeCard: async (cardId: string, price: number) => {
+      // Implementation
+      console.log('Trade card:', { cardId, price })
     },
     createBattle: async (cardId: string, entryFee: bigint) => {
       // Implementation untuk create battle
